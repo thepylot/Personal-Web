@@ -3351,7 +3351,7 @@ $black			: #222;
   /* =================================== */
   /*============ Start Blog Home Styles  =============*/
   .blog-home-banner {
-    background: url(../img/blog/blog-home-banner.jpg) bottom;
+    background: url(/static/img/network.jpg) bottom;
     background-size: cover;
     padding: 130px 0px;
   }
@@ -3383,7 +3383,7 @@ $black			: #222;
   }
   
   .blog-header-content h1 {
-    max-width: 500px;
+    
     margin-left: auto;
     margin-right: auto;
   }
@@ -3408,7 +3408,7 @@ $black			: #222;
   }
   
   .top-category-widget-area .single-cat-widget .overlay-bg {
-    background: rgba(0, 0, 0, 0.85);
+    background:rgba(7, 85, 146, 0.58);
     margin: 7%;
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
@@ -3443,7 +3443,7 @@ $black			: #222;
   }
   
   .top-category-widget-area .single-cat-widget:hover .overlay-bg {
-    background: rgba(132, 144, 255, 0.85);
+    background: rgb(35, 134, 212);
     margin: 7%;
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;

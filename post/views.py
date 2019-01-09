@@ -1,21 +1,27 @@
-from django.shortcuts import render,HttpResponseRedirect,redirect
+from django.shortcuts import render,HttpResponseRedirect,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import F
+
 from .models import Post
+from .forms import PostForm
 from django.template import loader
-from django.http import JsonResponse
-from django.http import HttpResponse
-import json
+from django.utils.text import slugify
+from django.contrib import messages
 
 def home_view(request):
+    
+
+    template="post/home.html"
+    return render(request,template)
+
+
+def blog(request):
     #ALL 
     
-    posts = Post.objects.all()[:6]
-    posts_bg = Post.objects.all().order_by('-datetime')
-    posts_first_three = Post.objects.all().order_by('-datetime')[:3]
-    posts_middle_three = Post.objects.all().order_by('-datetime')[3:6]
-    posts_end_three = Post.objects.all().order_by('-datetime')[6:9]
+   
+    posts = Post.objects.all().order_by('-published')
+   
     
     #CATEGORIES
     category_game = Post.objects.all().filter(category="game")[:3]
@@ -25,14 +31,21 @@ def home_view(request):
     category_science = Post.objects.all().filter(category="science")[:3] 
     category_social_media = Post.objects.all().filter(category="social media")[:3] 
     category_equipment = Post.objects.all().filter(category="equipment")[:3] 
+
+    paginator = Paginator(posts, 4)
+    page = request.GET.get('page')
+    if not page:
+        page = paginator.num_pages
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
   
     context = {
       
       'posts':posts,
-      'posts_bg':posts_bg,
-      'posts_first_three':posts_first_three,
-      'posts_middle_three':posts_middle_three,
-      'posts_end_three': posts_end_three,
       'category_game':category_game,
       'category_mobile':category_mobile,
       'category_software':category_software,
@@ -43,34 +56,74 @@ def home_view(request):
 
 
     }
-    
 
-    template="post/home.html"
+    template="post/blog.html"
     return render(request,template,context)
 
-def lazy_load_posts(request):
-  page = request.POST.get('page')
-  posts = Post.objects.all()
-  
-  
-  results_per_page = 5
-  paginator = Paginator(posts, results_per_page)
-  try:
-    posts = paginator.page(page)
-  except PageNotAnInteger:
-    posts = paginator.page(1)
-  except EmptyPage:
-    posts = paginator.page(paginator.num_pages)
-		
-  # build a html posts list with the paginated posts
-  posts_html = loader.render_to_string('test2.html', {'posts': posts})
-  posts_html = posts_html.replace("\t", "")
+
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+
+    Post.objects.filter(id=post.id).update(views=F('views') + 1)
+   
+    
+   
 
 
-  
-  
-  # package output data and return it as a JSON object
-  output_data = {'posts_html':posts_html, 'has_next': posts.has_next()}
+    context = {
+        'post':post,   
+        }
+    return render (request, 'post/detail.html', context )
 
+
+def admin(request):
+    template="dashboard/admin.html"
+    return render(request, template) 
+
+
+def post_create(request):
+    form = PostForm(request.POST or None, request.FILES or None)
   
-  return JsonResponse(output_data)
+    posts = Post.objects.all().order_by('-published')
+    if form.is_valid():
+        post = form.save()
+        messages.success(request, 'Form submission successful')
+  
+    paginator = Paginator(posts, 6)
+    page = request.GET.get('page')
+    if not page:
+        page = paginator.num_pages
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+        
+        
+    context={
+        'form':form,
+        'posts':posts,
+    }
+    return render (request, 'dashboard/post_create.html',context)
+
+
+def post_update(request, id):
+    post = get_object_or_404(Post, id=id)
+    form = PostForm(request.POST or None, request.FILES or None, instance=post)
+    if form.is_valid():
+        post = form.save()
+        return redirect ('dashboard:create')
+      
+    context = {
+        'form':form,
+        'post':post,
+      }
+    return render (request, 'dashboard/post_update.html', context )
+
+
+def post_delete(request, id):
+    post = get_object_or_404(Post, id=id)
+    post.delete()
+    return redirect ('dashboard:create')
+

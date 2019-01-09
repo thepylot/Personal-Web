@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 
 class Post(models.Model):
 
@@ -17,7 +19,16 @@ class Post(models.Model):
     category = models.CharField(max_length=200, choices = CATEGORY_CHOICES)
     description = models.TextField()
     author = models.CharField(max_length=100)
-    datetime = models.DateTimeField(auto_now_add=True)
+    published = models.DateField(default=timezone.now())
     image = models.FileField(null=True, blank=True )
+    views = models.CharField(blank=True, max_length=100)
+  
 
+    def __str__(self):
+        return self.title
 
+class Comment(models.Model):
+    post = models.ForeignKey('post.Post', related_name='comments', on_delete=models.CASCADE)
+    name= models.CharField(max_length=200)
+    comment = models.TextField()
+    date = models.DateField(default=timezone.now())

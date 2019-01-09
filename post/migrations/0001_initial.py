@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('category', models.CharField(max_length=200, choices=[(b'mobile', b'MOBILE'), (b'software', b'SOFTWARE'), (b'game', b'GAME'), (b'space', b'SPACE'), (b'science', b'SCIENCE'), (b'social media', b'SOCIAL MEDIA'), (b'equipment', b'EQUIPMENT')])),
                 ('description', models.TextField()),
                 ('author', models.CharField(max_length=100)),
-                ('datetime', models.DateTimeField(auto_now_add=True)),
+                ('image', models.FileField(null=True, upload_to=b'', blank=True)),
             ],
         ),
     ]
