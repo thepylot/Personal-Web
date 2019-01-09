@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 
 
 class Post(models.Model):
@@ -26,6 +27,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('spider:detail', kwargs={'id': self.id})
 
 class Comment(models.Model):
     post = models.ForeignKey('post.Post', related_name='comments', on_delete=models.CASCADE)

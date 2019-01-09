@@ -2,9 +2,8 @@ from django.shortcuts import render,HttpResponseRedirect,redirect,get_object_or_
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import F
-
-from .models import Post
-from .forms import PostForm
+from .models import *
+from .forms import PostForm,CommentForm
 from django.template import loader
 from django.utils.text import slugify
 from django.contrib import messages
@@ -63,15 +62,24 @@ def blog(request):
 
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
-
     Post.objects.filter(id=post.id).update(views=F('views') + 1)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.save()
+        return redirect (post.get_absolute_url())
+    
+    comments = Comment.objects.all().count()
    
     
    
 
 
     context = {
-        'post':post,   
+        'post':post, 
+        'comments':comments,
+        'form':form,
         }
     return render (request, 'post/detail.html', context )
 
