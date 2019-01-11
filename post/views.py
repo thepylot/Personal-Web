@@ -9,10 +9,16 @@ from django.utils.text import slugify
 from django.contrib import messages
 
 def home_view(request):
+    posts = Post.objects.all().order_by('-published')[:3]
+
+    context={
+        'posts':posts,
+    }
+   
     
 
     template="post/home.html"
-    return render(request,template)
+    return render(request,template,context)
 
 
 def blog(request):
@@ -30,6 +36,11 @@ def blog(request):
     category_science = Post.objects.all().filter(category="science")[:3] 
     category_social_media = Post.objects.all().filter(category="social media")[:3] 
     category_equipment = Post.objects.all().filter(category="equipment")[:3] 
+    
+    #Popular Posts
+    popular_posts = Post.objects.all().order_by('-views')[:4]
+   
+
 
     paginator = Paginator(posts, 4)
     page = request.GET.get('page')
@@ -52,6 +63,7 @@ def blog(request):
       'category_science':category_science,
       'category_social_media':category_social_media,
       'category_equipment':category_equipment,
+      'popular_posts':popular_posts,
 
 
     }
@@ -88,6 +100,7 @@ def admin(request):
     template="dashboard/admin.html"
     return render(request, template) 
 
+#Post Tools Functions
 
 def post_create(request):
     form = PostForm(request.POST or None, request.FILES or None)
@@ -134,4 +147,149 @@ def post_delete(request, id):
     post = get_object_or_404(Post, id=id)
     post.delete()
     return redirect ('dashboard:create')
+
+#Post Category Functions
+
+def cat_software (request):
+    posts =  Post.objects.all().filter(category="software")
+    popular_posts = Post.objects.all().order_by('-views')[:4]
+   
+    paginator = Paginator(posts, 6)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+   
+    context={
+        'posts':posts,
+        'popular_posts':popular_posts,
+        
+        
+    }
+    return render (request, 'post/blog.html', context)  
+
+def cat_mobile (request):
+    posts =  Post.objects.all().filter(category="mobile")
+    popular_posts = Post.objects.all().order_by('-views')[:4]
+    paginator = Paginator(posts, 6)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+   
+    context={
+        'posts':posts,
+        'popular_posts':popular_posts,
+        
+    }
+    return render (request, 'post/blog.html', context)  
+
+def cat_game(request):
+    posts =  Post.objects.all().filter(category="game")
+    popular_posts = Post.objects.all().order_by('-views')[:4]
+    paginator = Paginator(posts, 6)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+   
+    context={
+        'posts':posts,
+        'popular_posts':popular_posts,
+        
+    }
+    return render (request, 'post/blog.html', context)  
+
+def cat_space (request):
+    posts =  Post.objects.all().filter(category="space")
+    popular_posts = Post.objects.all().order_by('-views')[:4]
+    paginator = Paginator(posts, 6)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+   
+    context={
+        'posts':posts,
+        'popular_posts':popular_posts,
+        
+    }
+    return render (request, 'post/blog.html', context)  
+
+def cat_science (request):
+    posts =  Post.objects.all().filter(category="science")
+    popular_posts = Post.objects.all().order_by('-views')[:4]
+    paginator = Paginator(posts, 6)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+   
+    context={
+        'posts':posts,
+        'popular_posts':popular_posts,
+        
+    }
+    return render (request, 'post/blog.html', context)  
+
+def cat_socialmedia (request):
+    posts =  Post.objects.all().filter(category="social media")
+    popular_posts = Post.objects.all().order_by('-views')[:4]
+    paginator = Paginator(posts, 6)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+   
+    context={
+        'posts':posts,
+        'popular_posts':popular_posts,
+        
+    }
+    return render (request, 'post/blog.html', context)  
+
+def cat_equipment (request):
+    posts =  Post.objects.all().filter(category="equipment")
+    popular_posts = Post.objects.all().order_by('-views')[:4]
+    paginator = Paginator(posts, 6)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+   
+    context={
+        'posts':posts,
+        'popular_posts':popular_posts,
+        
+    }
+    return render (request, 'post/blog.html', context)  
+
 

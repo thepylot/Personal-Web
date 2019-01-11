@@ -18,6 +18,17 @@ urlpatterns = [
     #dashboard urls
     url(r'^admin/', admin, name='admin'),
     url(r'^create/', post_create, name='create'),
+
+    #category urls
+    url(r'^software/', cat_software, name='software'),
+    url(r'^mobile/', cat_mobile, name='mobile'),
+    url(r'^game/', cat_game, name='game'),
+    url(r'^space/', cat_space, name='space'),
+    url(r'^socialmedia/', cat_socialmedia, name='socialmedia'),
+    url(r'^science/', cat_space, name='science'),
+    url(r'^equipment/', cat_equipment, name='equipment'),
+        
+
    
     
   

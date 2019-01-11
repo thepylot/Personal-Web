@@ -3625,7 +3625,7 @@ $black			: #222;
   .widget-wrap {
     background: #fafaff;
     padding: 20px 0px;
-    border: 1px solid #eee;
+    border: 1px solid #07548b;
   }
   
   @media (max-width: 991px) {
@@ -3654,7 +3654,7 @@ $black			: #222;
     width: 80%;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
-    background: #8490ff;
+    background: #04091e;
   }
   
   .widget-wrap .search-widget ::-webkit-input-placeholder {
@@ -3681,7 +3681,7 @@ $black			: #222;
     float: left;
     width: 20%;
     padding: 10px;
-    background: #8490ff;
+    background: #07548b;
     color: #fff;
     font-size: 17px;
     border: none;
@@ -3729,7 +3729,7 @@ $black			: #222;
   }
   
   .widget-wrap .popular-post-widget .popular-title {
-    background: #8490ff;
+    background: #04091e;
     color: #fff;
     text-align: center;
     padding: 12px 0px;
@@ -3761,7 +3761,7 @@ $black			: #222;
   }
   
   .widget-wrap .popular-post-widget .single-post-list .details h6:hover {
-    color: #8490ff;
+    color: #04091e;
   }
   
   .widget-wrap .popular-post-widget .single-post-list .details p {
@@ -3773,7 +3773,7 @@ $black			: #222;
   }
   
   .widget-wrap .post-category-widget .category-title {
-    background: #8490ff;
+    background: #04091e;
     color: #fff;
     text-align: center;
     padding: 12px 0px;
@@ -3891,7 +3891,7 @@ $black			: #222;
   }
   
   .widget-wrap .tag-cloud-widget .tagcloud-title {
-    background: #8490ff;
+    background: #04091e;
     color: #fff;
     text-align: center;
     padding: 12px 0px;
@@ -3900,7 +3900,7 @@ $black			: #222;
   
   .widget-wrap .tag-cloud-widget ul li {
     display: inline-block;
-    border: 1px solid #eee;
+    border: 1px solid #07548b;
     background: #fff;
     padding: 4px 14px;
     margin-bottom: 10px;
@@ -3911,7 +3911,7 @@ $black			: #222;
   }
   
   .widget-wrap .tag-cloud-widget ul li:hover {
-    background: #8490ff;
+    background: #07548b;
   }
   
   .widget-wrap .tag-cloud-widget ul li:hover a {

@@ -60,7 +60,7 @@
                         <p class="text-white">
                            Take a look what they got
                         </p>
-                        <a href="blog-single.html" class="primary-btn">View More</a>
+                      
                     </div>	
                 </div>
             </div>
@@ -75,7 +75,7 @@
                         <div class="single-cat-widget">
                             <div class="content relative">
                                 <div class="overlay overlay-bg"></div>
-                                <a href="#" target="_blank">
+                                <a href="{%url 'spider:software'%}" target="_blank">
                                   <div class="thumb">
                                        <img class="content-image img-fluid d-block mx-auto" src="/static/img/code.jpg" alt="">
                                     </div>
@@ -92,7 +92,7 @@
                         <div class="single-cat-widget">
                             <div class="content relative">
                                 <div class="overlay overlay-bg"></div>
-                                <a href="#" target="_blank">
+                                <a href="{%url 'spider:game'%}" target="_blank">
                                   <div class="thumb">
                                        <img class="content-image img-fluid d-block mx-auto" src="/static/img/gaming.jpg" alt="">
                                     </div>
@@ -109,7 +109,7 @@
                         <div class="single-cat-widget">
                             <div class="content relative">
                                 <div class="overlay overlay-bg"></div>
-                                <a href="#" target="_blank">
+                                <a href="{%url 'spider:space'%}" target="_blank">
                                   <div class="thumb">
                                        <img class="content-image img-fluid d-block mx-auto" src="/static/img/space.jpg" alt="">
                                     </div>
@@ -136,10 +136,8 @@
                         <div class="single-post row">
                             <div class="col-lg-3 col-md-3 meta-details">
                                 <ul class="tags">
-                                    <li><a href="#">Food,</a></li>
-                                    <li><a href="#">Technology,</a></li>
-                                    <li><a href="#">Politics,</a></li>
-                                    <li><a href="#">Lifestyle</a></li>
+                                    <li><a href="#">{{post.category}}</a></li>
+                                  
                                 </ul>
                                 <div class="user-details row">
                                     <p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{post.author}}</a> <span class="lnr lnr-user"></span></p>
@@ -150,13 +148,15 @@
                             </div>
                             <div class="col-lg-9 col-md-9">
                                 <div class="feature-img">
+                                    <a href="{% url 'spider:detail' post.id%}">
                                     <img class="img-fluid" src="/media/{{post.image}}" alt="">
+                                </a>
                                 </div>
                                 <a class="posts-title" href="{% url 'spider:detail' post.id%}"><h3>{{post.title}}</h3></a>
                                 <p class="excert">
-                                   {{post.description|truncatewords:7}}
+                                   {{post.description|truncatewords:14}}
                                 </p>
-                                <a href="blog-single.html" class="primary-btn">View More</a>
+                                <a href="{% url 'spider:detail' post.id%}" class="primary-btn">View More</a>
                             </div>
                         </div>	
                         {% endfor %}													
@@ -195,9 +195,9 @@
                             </div>
                             <div class="single-sidebar-widget user-info-widget">
                                 <img src="#" alt="">
-                                <a href="#"><h4>Charlie Barber</h4></a>
+                                <a href="#"><h4>SpiderDev</h4></a>
                                 <p>
-                                    Senior blog writer
+                                   Web Spider 
                                 </p>
                                 <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -206,137 +206,86 @@
                                     <li><a href="#"><i class="fa fa-behance"></i></a></li>
                                 </ul>
                                 <p>
-                                    Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.
+                                   The SpiderDev is a platform that helps programmers to share their knownledge with eachother.Let's build the web together!
                                 </p>
                             </div>
                             <div class="single-sidebar-widget popular-post-widget">
                                 <h4 class="popular-title">Popular Posts</h4>
                                 <div class="popular-post-list">
+                                    {% for post in popular_posts%}
                                     <div class="single-post-list d-flex flex-row align-items-center">
                                         <div class="thumb">
-                                            <img class="img-fluid" src="/static/img/blog/pp1.jpg" alt="">
+                                            <img class="img-responsive" src="/media/{{post.image}}" alt="{{post.title}}" width="150" height=100 >
                                         </div>
                                         <div class="details">
-                                            <a href="blog-single.html"><h6>Space The Final Frontier</h6></a>
-                                            <p>02 Hours ago</p>
+                                            <a href="blog-single.html"><h6>{{post.title}}</h6></a>
+                                            <p>{{post.published}}</p>
                                         </div>
                                     </div>
-                                    <div class="single-post-list d-flex flex-row align-items-center">
-                                        <div class="thumb">
-                                            <img class="img-fluid" src="/static/img/blog/pp2.jpg" alt="">
-                                        </div>
-                                        <div class="details">
-                                            <a href="blog-single.html"><h6>The Amazing Hubble</h6></a>
-                                            <p>02 Hours ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="single-post-list d-flex flex-row align-items-center">
-                                        <div class="thumb">
-                                            <img class="img-fluid" src="/static/img/blog/pp3.jpg" alt="">
-                                        </div>
-                                        <div class="details">
-                                            <a href="blog-single.html"><h6>Astronomy Or Astrology</h6></a>
-                                            <p>02 Hours ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="single-post-list d-flex flex-row align-items-center">
-                                        <div class="thumb">
-                                            <img class="img-fluid" src="/static/img/blog/pp4.jpg" alt="">
-                                        </div>
-                                        <div class="details">
-                                            <a href="blog-single.html"><h6>Asteroids telescope</h6></a>
-                                            <p>02 Hours ago</p>
-                                        </div>
-                                    </div>															
+                                    {% endfor %}															
                                 </div>
                             </div>
-                            <div class="single-sidebar-widget ads-widget">
+                           <!--<div class="single-sidebar-widget ads-widget">
                                 <a href="#"><img class="img-fluid" src="/static/img/blog/ads-banner.jpg" alt=""></a>
-                            </div>
+                            </div>--> 
                             <div class="single-sidebar-widget post-category-widget">
                                 <h4 class="category-title">Post Catgories</h4>
                                 <ul class="cat-list">
                                     <li>
-                                        <a href="#" class="d-flex justify-content-between">
-                                            <p>Technology</p>
-                                            <p>37</p>
+                                        <a href="{%url 'spider:software'%}" class="d-flex justify-content-between">
+                                            <p>Software</p>
+                                           
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="d-flex justify-content-between">
-                                            <p>Lifestyle</p>
-                                            <p>24</p>
+                                        <a href="{%url 'spider:mobile'%}" class="d-flex justify-content-between">
+                                            <p>Mobile</p>
+                                            
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="d-flex justify-content-between">
-                                            <p>Fashion</p>
-                                            <p>59</p>
+                                        <a href="{%url 'spider:game'%}" class="d-flex justify-content-between">
+                                            <p>Gaming</p>
+                                           
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="d-flex justify-content-between">
-                                            <p>Art</p>
-                                            <p>29</p>
+                                        <a href="{%url 'spider:space'%}" class="d-flex justify-content-between">
+                                            <p>Space</p>
+                                          
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="d-flex justify-content-between">
-                                            <p>Food</p>
-                                            <p>15</p>
+                                        <a href="{%url 'spider:socialmedia'%}" class="d-flex justify-content-between">
+                                            <p>Social Media</p>
+                                           
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="d-flex justify-content-between">
-                                            <p>Architecture</p>
-                                            <p>09</p>
+                                        <a href="{%url 'spider:science'%}" class="d-flex justify-content-between">
+                                            <p>Scinece</p>
+                                           
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="d-flex justify-content-between">
-                                            <p>Adventure</p>
-                                            <p>44</p>
+                                        <a href="{%url 'spider:equipment'%}" class="d-flex justify-content-between">
+                                            <p>Equipment</p>
+                                            
                                         </a>
                                     </li>															
                                 </ul>
                             </div>	
-                            <div class="single-sidebar-widget newsletter-widget">
-                                <h4 class="newsletter-title">Newsletter</h4>
-                                <p>
-                                    Here, I focus on a range of items and features that we use in life without
-                                    giving them a second thought.
-                                </p>
-                                <div class="form-group d-flex flex-row">
-                                   <div class="col-autos">
-                                      <div class="input-group">
-                                        <div class="input-group-prepend">
-                                          <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i>
-                                        </div>
-                                        </div>
-                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'" >
-                                      </div>
-                                    </div>
-                                    <a href="#" class="bbtns">Subcribe</a>
-                                </div>	
-                                <p class="text-bottom">
-                                    You can unsubscribe at any time
-                                </p>								
-                            </div>
+                           
                             <div class="single-sidebar-widget tag-cloud-widget">
                                 <h4 class="tagcloud-title">Tag Clouds</h4>
                                 <ul>
-                                    <li><a href="#">Technology</a></li>
-                                    <li><a href="#">Fashion</a></li>
-                                    <li><a href="#">Architecture</a></li>
-                                    <li><a href="#">Fashion</a></li>
-                                    <li><a href="#">Food</a></li>
-                                    <li><a href="#">Technology</a></li>
-                                    <li><a href="#">Lifestyle</a></li>
-                                    <li><a href="#">Art</a></li>
-                                    <li><a href="#">Adventure</a></li>
-                                    <li><a href="#">Food</a></li>
-                                    <li><a href="#">Lifestyle</a></li>
-                                    <li><a href="#">Adventure</a></li>
+                                    <li><a href="#">Software</a></li>
+                                    <li><a href="#">Mobile</a></li>
+                                    <li><a href="#">Gaming</a></li>
+                                    <li><a href="#">Science</a></li>
+                                    <li><a href="#">Social Media</a></li>
+                                    <li><a href="#">Space</a></li>
+                                    <li><a href="#">Equipment</a></li>
                                 </ul>
                             </div>								
                         </div>
@@ -352,33 +301,17 @@
                 <div class="row">
                     <div class="col-lg-5 col-md-6 col-sm-6">
                         <div class="single-footer-widget">
-                            <h4>About Me</h4>
+                            <h4>SpiderDev</h4>
                             <p>
-                                We have tested a number of registry fix and clean utilities and present our top 3 list on our site for your convenience.
+                                Let's build web together!
                             </p>
-                            <p class="footer-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                            <p class="footer-text">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved.
+</p>
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-6 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Newsletter</h4>
-                            <p>Stay updated with our latest trends</p>
-                            <div class="" id="mc_embed_signup">
-                                 <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get">
-                                  <div class="input-group">
-                                    <input type="text" class="form-control" name="EMAIL" placeholder="Enter Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email Address '" required="" type="email">
-                                    <div class="input-group-btn">
-                                      <button class="btn btn-default" type="submit">
-                                        <span class="lnr lnr-arrow-right"></span>
-                                      </button>    
-                                    </div>
-                                        <div class="info"></div>  
-                                  </div>
-                                </form> 
-                            </div>
-                        </div>
+                    
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
                         <div class="single-footer-widget">
