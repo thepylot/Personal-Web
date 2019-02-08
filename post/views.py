@@ -8,17 +8,7 @@ from django.template import loader
 from django.utils.text import slugify
 from django.contrib import messages
 
-def home_view(request):
-    posts = Post.objects.all().order_by('-published')[:3]
 
-    context={
-        'posts':posts,
-    }
-   
-    
-
-    template="post/home.html"
-    return render(request,template,context)
 
 
 def blog(request):

@@ -1,53 +1,4 @@
-/******************************************************************
-Theme Name: Personal 
-Description: 
-Author: Colorlib
-Author URI: 
-Version: 1.0
-Created: 
-******************************************************************/
-/*------------------------------------------------------------------
 
-
--------------------------------------------------------------------*/
-/*------------------------------------------------------------------
-[Table of contents]
-
-1.  Basic Styles
-	1.1	Variables
-	1.2	Mixins
-	1.3	Flexbox
-	1.4	Reset
-2.  Elements
-3.  Menu Style 
-4.  Home Page Style
-5.  About Page Style
-6.  Department Page Style
-7.  Blog Page Style
-8.  Contact Page Style
-9.  Footer Style
-
--------------------------------------------------------------------*/
-/* =================================== */
-/*  Font Family and Colors Styles
-/* =================================== */
-/*
-
-$primary-font	: 'Poppins', sans-serif;
----------------------------------------------
-
-$primary-color	: #8490ff;
-$title-color	: #222222;
-$text-color		: #777777;
-
-$white			: #fff;
-$offwhite		: #f9f9ff;
-$black			: #222;
-
-*/
-/* =================================== */
-/*  Basic Style 
-/* =================================== */
 ::-moz-selection {
     /* Code for Firefox */
     background-color: #8490ff;
@@ -3459,6 +3410,7 @@ $black			: #222;
   
   .post-content-area {
     background-color: #f9f9ff;
+    background: url('/static/img/net.png')
   }
   
   .post-content-area .single-post {
@@ -3543,17 +3495,25 @@ $black			: #222;
   }
   
   .post-content-area .single-post .primary-btn {
-    background: #fff !important;
-    color: #222 !important;
-    -webkit-transition: all 0.3s ease 0s;
-    -moz-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-    border-radius: 0px !important;
+    padding: 9px 40px;
+
+    background-color: #009DE1;
+    
+    color: #fff;
+    
+    display: inline-block;
+    
+    border-radius: 100px;
+    
+    margin-right: 10px;
+    
+    -webkit-box-shadow: 0 0 0 0 rgba(0,0,0,.4);
+    
+    box-shadow: 0 0 0 0 rgba(0,0,0,.4);
   }
   
   .post-content-area .single-post .primary-btn:hover {
-    background: #8490ff !important;
+    background:  #07548b !important;
     color: #fff !important;
   }
   
